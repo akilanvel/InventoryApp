@@ -62,7 +62,7 @@ function CustomerDashboard() {
         console.log(products);
         setShow(true);
 
-        localStorage.setItem('cart', JSON.stringify(response.data)); // FOR TESTING PURPOSES, DELETE LATER
+        //localStorage.setItem('cart', JSON.stringify(response.data)); // FOR TESTING PURPOSES, DELETE LATER
       })
       .catch((error) => {
         console.error("Error fetching sidebar data:", error);

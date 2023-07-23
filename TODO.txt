@@ -5,3 +5,8 @@
 - admin page for supplier, executive, manager signup
 - insert proper values into the database
 - create add new category functionality
+
+
+
+1. create add new category functionality
+2. create signup functionality

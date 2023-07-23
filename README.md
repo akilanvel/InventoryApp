@@ -1,2 +1,2 @@
-# InventoryApp
-Incedo Training Capstone Project
+# Inventory
+Incedo Full-Stack 2023 Training Project

@@ -21,6 +21,9 @@ function Product() {
     const [price, setPrice] = useState(null);
     const [description, setDescription] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
+    const [name, setName] = useState('');
+    const [priority, setPriority] = useState(0);
+
     useEffect(() => {
         async function getAllCategories() {
             try {
@@ -48,6 +51,28 @@ function Product() {
             }
         }
         getAllProducts();
+    }
+
+    const addNewCategory = async () => {
+        try {
+            const reponse = await axios.post(
+                "http://localhost:8181/category/add",
+                {
+                    name: name,
+                    priority: priority
+                }
+            );
+
+            setSuccessMsg('Category added successfully!!!');
+            setName('');
+            setPriority(0);
+
+            const response = await axios.get('http://localhost:8181/category/all');
+            setCategories(response.data);
+            setErrMsg("");
+        } catch (err) {
+            console.log(err.msg);
+        }
     }
 
     const addNewProduct = async () => {
@@ -173,7 +198,27 @@ function Product() {
                                 aria-label="Close"
                             ></button>
                         </div>
-                        <div class="modal-body">...</div>
+                        {/* Show success msg*/}
+                        {successMsg === "" ? (
+                            ""
+                        ) : (
+                            <div class="alert alert-primary" role="alert">
+                                {successMsg}
+                            </div>
+                        )}
+                        <div class="mb-3">
+                            <label class="form-label">Category Name: </label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="enter name" value={name} onChange={(e) => setName(e.target.value)} onClick={(e) => setName(e.target.value)}
+                            ></input>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Category Priority: </label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="enter priority" value={priority} onChange={(e) => setPriority(e.target.value)} onClick={(e) => setPriority(e.target.value)}
+                            ></input>
+                        </div>
                         <div class="modal-footer">
                             <button
                                 type="button"
@@ -182,8 +227,8 @@ function Product() {
                             >
                                 Close
                             </button>
-                            <button type="button" class="btn btn-primary">
-                                Understood
+                            <button type="button" class="btn btn-primary" onClick={() => addNewCategory()}>
+                                Add Category
                             </button>
                         </div>
                     </div>
