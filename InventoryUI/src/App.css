@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+.login-modal {
+  margin-top: 25vh;
+  width: 50%;
+}

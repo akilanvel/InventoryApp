@@ -1,0 +1,7 @@
+- add custom export buttons
+- delete useless 'new' buttons
+- make login look nice
+- signup page for customer
+- admin page for supplier, executive, manager signup
+- insert proper values into the database
+- create add new category functionality

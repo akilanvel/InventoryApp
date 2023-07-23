@@ -1,0 +1,8 @@
+Things I've used
+
+-Multithreading
+
+-Redux
+-Class based components
+-Functional components
+-Reducers
