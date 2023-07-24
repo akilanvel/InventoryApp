@@ -30,6 +30,7 @@ import com.springapp.inventoryapi.model.Order;
 import com.springapp.inventoryapi.model.Product;
 import com.springapp.inventoryapi.model.Supplier;
 import com.springapp.inventoryapi.model.Warehouse;
+import com.springapp.inventoryapi.service.CustomerService;
 import com.springapp.inventoryapi.service.OrderService;
 import com.springapp.inventoryapi.service.ProductService;
 import com.springapp.inventoryapi.service.SupplierService;
@@ -47,6 +48,8 @@ public class OrderController {
 	private WarehouseService warehouseService;
 	@Autowired
 	private SupplierService supplierService;
+	@Autowired
+	private CustomerService customerService;
 
 	@PostMapping("/entry")
 	public ResponseEntity<?> generateOrder(@RequestBody OrderSheetDto dto, Order order) {
@@ -140,7 +143,7 @@ public class OrderController {
 	@GetMapping("/manager/all") // username/password : spring has it.
 	public List<Order> getAllOrderForManager(
 			@RequestParam(name = "page", defaultValue = "0", required = false) Integer page,
-			@RequestParam(name = "size", defaultValue = "10000", required = false) Integer size, Principal principal) {
+			@RequestParam(name = "size", defaultValue = "10", required = false) Integer size, Principal principal) {
 
 		Pageable pageable = PageRequest.of(page, size);
 

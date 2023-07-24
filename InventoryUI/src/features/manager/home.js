@@ -10,15 +10,17 @@ import { Toolbar } from 'primereact/toolbar';
 
 import { InputText } from 'primereact/inputtext';
 import { getManagerOrders } from "../../store/action/manager";
+import axios from "axios";
 function ManagerHome() {
     const [username, setUsername] = useState('');
-    const [, setToken] = useState('');
     const dispatch = useDispatch();
     const { list } = useSelector(((state) => state.manager));
+    const [orders, setOrders] = useState([]);
     const [globalFilter, setGlobalFilter] = useState(null);
     const dt = useRef(null);
     const [successMsg, setSuccessMsg] = useState('');
-    const [size,] = useState(10000);
+    const [size,] = useState(10);
+    const [token, setToken] = useState(localStorage.getItem('token'));
 
     useEffect(() => {
         setUsername(localStorage.getItem('username'));
@@ -56,7 +58,12 @@ function ManagerHome() {
                     <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
                     &nbsp;&nbsp;&nbsp;
                 </span>
-                <Button label="Export" icon="pi pi-upload" className="p-button-help" onClick={exportCSV} />;
+                <Button
+                    label="Export"
+                    icon="pi pi-upload"
+                    className="btn btn-success" // Use 'btn-success' class to make it green
+                    onClick={exportCSV}
+                />;
             </div>
 
         )
@@ -104,7 +111,7 @@ function ManagerHome() {
                         dataKey="id"
                         paginator
                         rows={size}
-                        rowsPerPageOptions={[5, 10, 25]}
+
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" /** header={header} */
                         globalFilter={globalFilter}
@@ -129,15 +136,9 @@ function ManagerHome() {
                             sortable
                             style={{ minWidth: "6rem" }}
                         ></Column>
-                        <Column
-                            field="product.totalQuantity"
-                            header="Quantity"
-                            sortable
-                            style={{ minWidth: "6rem" }}
-                        ></Column>
 
                         <Column
-                            field="suppler.name"
+                            field="supplier.name"
                             header="Supplier Name"
                             sortable
                             style={{ minWidth: "12rem" }}

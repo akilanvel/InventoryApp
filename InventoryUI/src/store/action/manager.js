@@ -15,6 +15,7 @@ export const getManagerOrders = () => async (dispatch) => {
         payload: orders
     });
 }
+
 export const updateStatus = (orderId, status) => {
     /* Call the API and update the status */
     //this is to update the DB 

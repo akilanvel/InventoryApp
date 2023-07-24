@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.springapp.inventoryapi.enums.OrderStatus;
 import com.springapp.inventoryapi.exception.ResourceNotFoundException;
+import com.springapp.inventoryapi.model.Customer;
 import com.springapp.inventoryapi.model.Order;
 import com.springapp.inventoryapi.model.Product;
 import com.springapp.inventoryapi.model.Supplier;
@@ -148,4 +149,5 @@ public class OrderService {
 
 		return orderRepository.findAll(pageable).getContent();
 	}
+
 }

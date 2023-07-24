@@ -59,4 +59,8 @@ public class ProductCustomerService {
 
 		return productCustomerRepository.getAllPuchaseRecords(fromDate, toDate);
 	}
+
+	public List<Product> getProductsByCustomer(Customer byUsername) {
+		return productCustomerRepository.getProductsByCustomer(byUsername);
+	}
 }

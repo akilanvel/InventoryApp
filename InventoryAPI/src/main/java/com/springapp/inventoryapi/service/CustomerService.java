@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springapp.inventoryapi.model.Customer;
+import com.springapp.inventoryapi.model.Supplier;
 import com.springapp.inventoryapi.repository.CustomerRepository;
 
 @Service
@@ -22,5 +23,9 @@ public class CustomerService {
 	public Customer getById(int cid) {
 
 		return customerRepository.findById(cid).get();
+	}
+	
+	public Customer getByUsername(String supplierUsername) {
+		return customerRepository.getCustomerByUsername(supplierUsername);
 	}
 }

@@ -1,5 +1,6 @@
 package com.springapp.inventoryapi.controller;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springapp.inventoryapi.dto.OrderDto;
+import com.springapp.inventoryapi.model.Product;
 import com.springapp.inventoryapi.model.ProductCustomer;
+import com.springapp.inventoryapi.service.CustomerService;
 import com.springapp.inventoryapi.service.ProductCustomerService;
 
 @RestController // we tell spring that this class will have rest api's
@@ -24,6 +27,9 @@ public class ProductCustomerController {
 
 	@Autowired
 	private ProductCustomerService productCustomerService;
+	
+	@Autowired
+	private CustomerService customerService;
 
 	@PostMapping("/purchase/{cid}")
 	public void purchaseProduct(@PathVariable("cid") int cid, @RequestBody List<OrderDto> listDto) {
@@ -37,5 +43,10 @@ public class ProductCustomerController {
 		LocalDate to = LocalDate.parse(toDate, DateTimeFormatter.ISO_DATE);
 
 		return productCustomerService.getAllPuchaseRecords(from, to);
+	}
+	
+	@GetMapping("/all")
+	public List<Product> getAllProducts(Principal principal) {
+		return productCustomerService.getProductsByCustomer(customerService.getByUsername(principal.getName()));
 	}
 }

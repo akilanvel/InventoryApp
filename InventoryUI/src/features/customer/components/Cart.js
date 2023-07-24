@@ -105,17 +105,17 @@ export default function Cart() {
                 console.log(customerId);
 
                 axios
-            .post(`http://localhost:8181/product/customer/purchase/${customerId}`, orders, {
-                headers: {
-                    Authorization: "Basic " + token,
-                },
-            })
-            .then((response) => {
-                console.log("Purchased");
-            })
-            .catch((error) => {
-                console.error("Error fetching customer ID:", error);
-            });
+                    .post(`http://localhost:8181/product/customer/purchase/${customerId}`, orders, {
+                        headers: {
+                            Authorization: "Basic " + token,
+                        },
+                    })
+                    .then((response) => {
+                        console.log("Purchased");
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching customer ID:", error);
+                    });
             })
             .catch((error) => {
                 console.error("Error fetching customer ID:", error);
@@ -134,6 +134,7 @@ export default function Cart() {
     }
 
     return (
+
         <div>
             <Navbar />
             <section className="h-100" style={{ backgroundColor: "#eee" }}>
@@ -151,36 +152,37 @@ export default function Cart() {
                     paginator
                     rows={size}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" /** header={header} */
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
                     globalFilter={globalFilter}
                     header={header}
+                    style={{ width: "100%" }} /* Make the DataTable span the whole width */
                 >
                     <Column
                         field="id"
                         header="Product ID"
                         sortable
-                        style={{ minWidth: "8rem" }}
+                        style={{ minWidth: "25rem" }}
                     ></Column>
 
                     <Column
                         field="title"
                         header="Product Name"
                         sortable
-                        style={{ minWidth: "12rem" }}
+                        style={{ minWidth: "25rem" }}
                     ></Column>
 
                     <Column
                         field="price"
                         header="Price"
                         sortable
-                        style={{ minWidth: "6rem" }}
+                        style={{ minWidth: "25rem" }}
                     ></Column>
 
                     <Column
                         field="category.name"
                         header="Category"
                         sortable
-                        style={{ minWidth: "10rem" }}
+                        style={{ minWidth: "25rem" }}
                     ></Column>
 
                     <Column
@@ -189,10 +191,14 @@ export default function Cart() {
                         style={{ minWidth: "12rem" }}
                     ></Column>
                 </DataTable>
+
             </section>
             <br />
             <h2>Your total: {cartTotal}</h2>
-            <button type="button" className="btn btn-success" onClick={checkout}>Checkout</button>
+            <button type="button" className="btn btn-success" onClick={checkout}>
+                Checkout
+            </button>
         </div>
     );
+
 }

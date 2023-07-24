@@ -1,8 +1,62 @@
-Things I've used
+Backend:
+-asynchronous/parallel processing
+-date-based logic and formatting
+-Java
+-Controller layer
+-Service layer
+-Persistence layer
+-Spring Tool Suite
+-Model classes
+-POJO
+-enumeration
+-superclass/subclass architecture (inheritance)
+-encapsulation
+-abstract classes
+-interfaces
+-polymorphism
+-Data access object
+-Data transfer objects
+-Exception Handling
+-Data structures: List, Maps, Sets
+-Hibernate
+-Maven
+-Rest API
+-Spring
+-JPQL Query Language
+-Custom comparator interfaces
+-Lambda functions
+-Runnable interface
+-ThreadPoolExecutor class
+-Custom security configuration
+-Rest Controllers, Services, and JPA Repository
 
--Multithreading
+Database:
+-SQL Query Language
+-Foreign keys
+-Relationship tables
+-MySQL Workbench
+-Amazon Web Services Cloud
+-Spring Boot DB Connection
 
--Redux
--Class based components
--Functional components
--Reducers
+Frontend:
+-Html
+-CSS
+-Javascript
+-React/Node
+-redux
+-class-based components
+-functional components
+-life cycle hooks
+-local storage
+-security/authorization
+-States
+-React navigation
+-Axios API calls
+-fetch() API calls
+-Exporting data as CSV
+
+Version Control:
+-Database on AWS Cloud
+-Github repository
+-Custom branches
+-Dockerhub for backend

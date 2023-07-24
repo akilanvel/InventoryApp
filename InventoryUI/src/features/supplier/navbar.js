@@ -10,12 +10,17 @@ import {
 } from "mdb-react-ui-kit";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../images/logo.jpg";
 
 function Navbar() {
     const [showBasic, setShowBasic] = useState(false);
     return (
         <MDBNavbar expand="lg" light bgColor="light">
             <MDBContainer fluid>
+                <MDBNavbarBrand>
+                    <img src={logo} alt='Logo' height='40' /> {/* Custom logo image */}
+                </MDBNavbarBrand>
+
                 <MDBNavbarBrand href="#">Supplier Dashboard</MDBNavbarBrand>
 
                 <MDBNavbarToggler

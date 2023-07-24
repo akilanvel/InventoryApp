@@ -29,7 +29,7 @@ function Order() {
   const [productId, setProductId] = useState(null);
   const [warehouseId, setWarehouseId] = useState(null);
   const [sid, setSid] = useState(null);
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState(0);
   const [doCall, setDoCall] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
   const [warehouses, setWarehouses] = useState([]);
@@ -57,6 +57,7 @@ function Order() {
       try {
         const response = await axios.get('http://localhost:8181/executive/order/all/' + supplierId + '?page=' + page + '&size=' + size);
         setOrders(response.data);
+        console.log(response.data);
         setErrMsg("");
       }
       catch (err) {
@@ -139,8 +140,15 @@ function Order() {
   const leftToolbarTemplate = () => {
     return (
       <div className="flex flex-wrap gap-2">
-        <Button label="New" icon="pi pi-plus" severity="success" onClick={() => setSuccessMsg('')} data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop" />
+        <Button
+          label="New"
+          icon="pi pi-plus"
+          className="btn btn-primary" // Use 'btn-primary' class to make it blue
+          severity="success" // This attribute does not apply Bootstrap styling; you can remove it
+          onClick={() => setSuccessMsg('')}
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        />;
       </div>
     );
   };
@@ -153,7 +161,12 @@ function Order() {
           <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
           &nbsp;&nbsp;&nbsp;
         </span>
-        <Button label="Export" icon="pi pi-upload" className="p-button-help" onClick={exportCSV} />;
+        <Button
+          label="Export"
+          icon="pi pi-upload"
+          className="btn btn-success" // Use 'btn-success' class to make it green
+          onClick={exportCSV}
+        />;
       </div>
 
     )
@@ -374,7 +387,7 @@ function Order() {
             style={{ minWidth: "6rem" }}
           ></Column>
           <Column
-            field="product.totalQuantity"
+            field="quantity"
             header="Quantity"
             sortable
             style={{ minWidth: "6rem" }}
@@ -386,7 +399,7 @@ function Order() {
             style={{ minWidth: "10rem" }}
           ></Column>
           <Column
-            field="suppler.name"
+            field="supplier.name"
             header="Supplier Name"
             sortable
             style={{ minWidth: "12rem" }}

@@ -23,6 +23,8 @@ function Product() {
     const [successMsg, setSuccessMsg] = useState('');
     const [name, setName] = useState('');
     const [priority, setPriority] = useState(0);
+    const [size, setSize] = useState(10);
+    const [categoryid, setId] = useState(-1);
 
     useEffect(() => {
         async function getAllCategories() {
@@ -40,10 +42,12 @@ function Product() {
 
     const viewProducts = (cid) => {
         setShowProduct(true);
+        setId(cid);
         async function getAllProducts() {
             try {
                 const response = await axios.get('http://localhost:8181/product/category/all/' + cid);
                 setProducts(response.data);
+                setId(cid);
                 setErrMsg("");
             }
             catch (err) {
@@ -99,6 +103,22 @@ function Product() {
             console.log(err.msg);
         }
     }
+
+    const deleteProduct = async (p) => {
+        console.log("Delete API attempted");
+        console.log(p.id);
+        console.log(p.title);
+        try {
+            const response = axios.delete(
+                `http://localhost:8181/product/delete/${p.id}`);
+            const responsee = await axios.get('http://localhost:8181/product/category/all/' + categoryid);
+            setProducts(responsee.data);
+            viewProducts(categoryid);
+        } catch (err) {
+            console.log(err.msg);
+        }
+    }
+
     return (
         <div>
             {/* 2 modals: 1 for product add & 1 category */}
@@ -289,7 +309,7 @@ function Product() {
                                 Title
                             </th>
                             <th scope="col">Price</th>
-                            <th scope="col">Quantity Available</th>
+
                             <th scope="col">Category Name</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -307,10 +327,10 @@ function Product() {
                                         </div>
                                     </td>
                                     <td>${p.price}</td>
-                                    <td>{p.totalQuantity}</td>
+
                                     <td>{p.category.name}</td>
                                     <td>
-                                        <MDBBtn color="link" rounded size="sm">
+                                        <MDBBtn color="link" rounded size="sm" onClick={() => deleteProduct(p)}>
                                             Delete
                                         </MDBBtn>
                                     </td>
