@@ -3,7 +3,7 @@ import './App.css';
 import Login from './auth/login';
 import SupplierDashboard from './features/supplier/supplier-dashboard';
 import Logout from './auth/logout';
-import Admin from './admin/admin-dashboard';
+import Admin from './features/admin/admin-dashboard';
 import ExecutiveDashboard from './features/executive/executive-dashboard';
 import CustomerDashboard from './features/customer/customer-dashboard';
 import Cart from './features/customer/components/Cart';

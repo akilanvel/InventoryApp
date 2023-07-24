@@ -1,12 +1,10 @@
-- add custom export buttons
-- delete useless 'new' buttons
-- make login look nice
-- signup page for customer
-- admin page for supplier, executive, manager signup
-- insert proper values into the database
-- create add new category functionality
+Customer Functionality:
+- Add coupon code functionality
+- Add returns
+- Add past orders
+- Add ratings
 
+Database free tier is over, connect to new database using
+the application.properties file in:
 
-
-1. create add new category functionality
-2. create signup functionality
+https://github.com/imtiyaz-hirani/incedo-fullstack-july/tree/inventory-ui-part3
