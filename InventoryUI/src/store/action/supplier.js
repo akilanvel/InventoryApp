@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getSupplierOrders = () => async (dispatch) => {
     let token = localStorage.getItem("token");
-    const response = await axios.get('http://localhost:9090/order/all?page=0&size=10000',
+    const response = await axios.get('http://localhost:8181/order/all?page=0&size=10000',
         {
             headers: {
                 'Authorization': 'Basic ' + token
@@ -26,7 +26,7 @@ export const updateStatus = (orderId, status) => {
     /* Call the API and update the status */
     //this is to update the DB 
     axios.put(
-        "http://localhost:9090/order/update/" + orderId + '/' + status).then(response => { });
+        "http://localhost:8181/order/update/" + orderId + '/' + status).then(response => { });
 
     //this is to update the store 
     return {

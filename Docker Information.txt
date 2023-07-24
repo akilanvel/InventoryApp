@@ -1,0 +1,10 @@
+Docker repo name:
+
+akilanvel/inventoryapi
+
+Command:
+docker run -p 9090:8181 akilanvel/inventoryapi
+
+
+*IF USING DOCKER TO RUN BACKEND INSTEAD OF DIRECTLY RUNNING JAR FILE IN INVENTORYAPI,
+YOU MUST CHANGE ALL API CALLS FROM LOCALHOST:8181 TO LOCALHOST:9090
